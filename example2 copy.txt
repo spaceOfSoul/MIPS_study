@@ -1,0 +1,18 @@
+	.data
+str:	.asciiz "the answer is "
+
+	.text
+	.globl main
+main:
+	
+	ori $v0, $zero, 4		# load 4 to $v0 for print_string
+	lui $a0, 0x1001		# the print_string syscall expects the string address as the argument;
+	ori $a0, $a0, 0
+	syscall			#SPIM will now invoke syscall-4 
+
+	ori $v0, $zero, 1 		# syscall-1 corresponds to print_int
+	ori $a0, $zero, 5 		# print_int expects the integer as its argument
+	syscall 			# SPIM will now invoke syscall-1
+
+	jr $ra
+      
